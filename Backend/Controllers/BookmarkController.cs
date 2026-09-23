@@ -1,11 +1,13 @@
 using Backend.DTOs;
 using Backend.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Controllers;
 
 [ApiController]
 [Route("api/bookmarks")]
+[Authorize]
 public class BookmarkController : ControllerBase
 {
     private readonly IBookmarkSession _bookmarkSession;

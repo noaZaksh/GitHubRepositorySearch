@@ -32,3 +32,12 @@
 /workspaces/GitHubRepositorySearch/Backend/obj/Debug/net10.0/Backend.pdb
 /workspaces/GitHubRepositorySearch/Backend/obj/Debug/net10.0/Backend.genruntimeconfig.cache
 /workspaces/GitHubRepositorySearch/Backend/obj/Debug/net10.0/ref/Backend.dll
+/workspaces/GitHubRepositorySearch/Backend/bin/Debug/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/workspaces/GitHubRepositorySearch/Backend/bin/Debug/net10.0/Microsoft.Bcl.Cryptography.dll
+/workspaces/GitHubRepositorySearch/Backend/bin/Debug/net10.0/Microsoft.IdentityModel.Abstractions.dll
+/workspaces/GitHubRepositorySearch/Backend/bin/Debug/net10.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/workspaces/GitHubRepositorySearch/Backend/bin/Debug/net10.0/Microsoft.IdentityModel.Logging.dll
+/workspaces/GitHubRepositorySearch/Backend/bin/Debug/net10.0/Microsoft.IdentityModel.Protocols.dll
+/workspaces/GitHubRepositorySearch/Backend/bin/Debug/net10.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/workspaces/GitHubRepositorySearch/Backend/bin/Debug/net10.0/Microsoft.IdentityModel.Tokens.dll
+/workspaces/GitHubRepositorySearch/Backend/bin/Debug/net10.0/System.IdentityModel.Tokens.Jwt.dll

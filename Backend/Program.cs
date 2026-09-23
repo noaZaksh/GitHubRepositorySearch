@@ -1,4 +1,7 @@
+using System.Text;
 using Backend.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +28,33 @@ builder.Services.AddSession(options =>
     options.Cookie.SameSite = SameSiteMode.None;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
+
+// JWT Authentication
+const string jwtKey =
+    "super-secret-key-for-github-repository-search-12345";
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(jwtKey)
+            ),
+
+            ValidateIssuer = false,
+            ValidateAudience = false,
+
+            ValidateLifetime = true,
+
+            ClockSkew = TimeSpan.Zero
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 // Controllers
 builder.Services.AddControllers();
@@ -54,10 +84,14 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-// CORS must run before the endpoints.
+// CORS must run before endpoints.
 app.UseCors("Angular");
 
 app.UseSession();
+
+// JWT Authentication must run before Authorization.
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
