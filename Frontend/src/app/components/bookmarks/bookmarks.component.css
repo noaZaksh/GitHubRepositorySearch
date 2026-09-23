@@ -1,0 +1,83 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #f6f8fa;
+}
+
+.bookmarks-page {
+  min-height: 100vh;
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+.bookmarks-header {
+  max-width: 1100px;
+  margin: 0 auto 30px;
+}
+
+.bookmarks-header h1 {
+  margin: 0;
+  font-size: 30px;
+  color: #24292f;
+}
+
+.bookmarks-header p {
+  margin: 8px 0 0;
+  color: #57606a;
+}
+
+.cards {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.status,
+.error,
+.empty {
+  max-width: 700px;
+  margin: 80px auto;
+  text-align: center;
+}
+
+.status {
+  color: #57606a;
+}
+
+.error {
+  padding: 15px;
+  border-radius: 8px;
+  background: #ffebe9;
+  color: #cf222e;
+}
+
+.empty {
+  padding: 50px 20px;
+  background: white;
+  border: 1px solid #d8dee4;
+  border-radius: 12px;
+}
+
+.empty-icon {
+  font-size: 50px;
+  color: #57606a;
+}
+
+.empty h2 {
+  margin: 15px 0 8px;
+  color: #24292f;
+}
+
+.empty p {
+  margin: 0;
+  color: #57606a;
+}
+
+@media (max-width: 800px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}

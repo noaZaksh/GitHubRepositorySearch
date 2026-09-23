@@ -1,0 +1,90 @@
+@if (!authService.isLoggedIn()) {
+  <app-login (loginSuccess)="loadBookmarks()" />
+} @else {
+  <div class="app">
+    <header class="app-header">
+      <div>
+        <h1>GitHub Repository Search</h1>
+        <p class="subtitle">
+          Search repositories via the .NET backend
+        </p>
+      </div>
+
+      <div class="header-actions">
+        @if (showBookmarks()) {
+          <button
+            class="nav-button"
+            (click)="openSearch()"
+          >
+            Search
+          </button>
+        } @else {
+          <button
+            class="nav-button"
+            (click)="openBookmarks()"
+          >
+            My Bookmarks
+          </button>
+        }
+
+        <button
+          class="logout-button"
+          (click)="logout()"
+        >
+          Logout
+        </button>
+      </div>
+    </header>
+
+    @if (showBookmarks()) {
+      <app-bookmarks />
+    } @else {
+      <section class="search-bar">
+        <input
+          type="text"
+          [(ngModel)]="query"
+          (keydown.enter)="search()"
+          placeholder="Enter a search term (e.g. angular)"
+          aria-label="Search term"
+        />
+
+        <button
+          (click)="search()"
+          [disabled]="loading()"
+        >
+          {{ loading() ? 'Searching…' : 'Search' }}
+        </button>
+      </section>
+
+      @if (error()) {
+        <div class="error" role="alert">
+          {{ error() }}
+        </div>
+      }
+
+      @if (loading()) {
+        <div class="status">
+          Loading results…
+        </div>
+      } @else if (
+        searched() &&
+        repos().length === 0 &&
+        !error()
+      ) {
+        <div class="status">
+          No repositories found for "{{ lastQuery() }}".
+        </div>
+      } @else {
+        <div class="cards">
+          @for (repo of repos(); track repo.id) {
+            <app-repository-card
+              [repo]="repo"
+              [bookmarked]="isBookmarked(repo.id)"
+              (bookmarkToggle)="toggleBookmark(repo)"
+            />
+          }
+        </div>
+      }
+    }
+  </div>
+}

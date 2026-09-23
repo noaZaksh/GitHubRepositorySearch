@@ -1,0 +1,19 @@
+<div class="card">
+  <img [src]="repo().avatarUrl" [alt]="repo().fullName" class="avatar" />
+  <div class="card-body">
+    <h3>{{ repo().name }}</h3>
+    <p class="full-name">{{ repo().fullName }}</p>
+    <div class="card-actions">
+      <a [href]="repo().htmlUrl" target="_blank" rel="noopener noreferrer">
+        View on GitHub
+      </a>
+      <button
+        class="bookmark-btn"
+        (click)="onBookmarkClick()"
+        [class.bookmarked]="bookmarked()"
+      >
+        {{ bookmarked() ? '★ Bookmarked' : '☆ Bookmark' }}
+      </button>
+    </div>
+  </div>
+</div>
